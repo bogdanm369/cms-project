@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: ev-us-business
+  cloud:
+    discovery:
+      enabled: true
+
+server:
+  port: 8082
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, routes, health
+
+ev:
+  common-urls:
+    gateway-url: http://localhost:9091
+    user-service-url: /userProfile
+    payment-service-url: /payments
+    information-manager-url: /informationManager
+    business-service-url: /businessService
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:9090/eureka

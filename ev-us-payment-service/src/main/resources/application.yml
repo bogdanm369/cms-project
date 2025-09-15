@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: ev-us-payments
+
+server:
+  port: 8084
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, routes, health
+
+ev:
+  common-urls:
+    gateway-url: http://localhost:9091
+    user-service-url: /userProfile
+    payment-service-url: /payments
+    information-manager-url: /informationManager
+    business-service-url: /businessService
+  security:
+    user-profile-auth-url: v1/authenticateEvUser
+    master-bypass: true
+    master-username: superuser
+    master-password: superpassword

@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: ev-us-user-profile
+  cloud:
+    discovery:
+      enabled: true
+
+server:
+  port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, routes, health
+
+ev:
+  common-urls:
+    gateway-url: http://localhost:9091
+    user-service-url: /userProfile
+    payments-service-url: /payments
+    information-manager-url: /informationManager
+    business-service-url: /businessService
+  security:
+    user-profile-auth-url: v1/authenticateEvUser
+    master-bypass: true
+    #master-username: superuser
+    #master-password: superpassword
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:9090/eureka

@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: ev-gateway
+
+server:
+  port: 9091
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, routes, health
+
+zuul:
+  routes:
+    user-profile:
+      path: /userProfile/**
+      serviceId: ev-us-user-profile
+    payments-service:
+      path: /payments/**
+      serviceId: ev-us-payments
+    information-manager:
+      path: /informationManager/**
+      serviceId: ev-us-information-manager
+    business-service:
+      path: /businessService/**
+      serviceId: ev-us-business
+  host:
+    connect-timeout-millis: 30000
+    socket-timeout-millis: 30000
+
+ribbon:
+  MaxAutoRetries: 1 # Number of retries for the current instance
+  MaxAutoRetriesNextServer: 1 # Number of retries for switching instances
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+  OkToRetryOnAllOperations: true # All operation requests are retried
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 90000 # Fuse service request timeout
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9090/eureka

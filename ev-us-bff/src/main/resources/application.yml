@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: ev-us-bff
+  main:
+    web-application-type: servlet
+  cloud:
+    discovery:
+      enabled: false
+
+server:
+  port: 8081
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, routes, health
+
+ev:
+  common-urls:
+    gateway-url: http://localhost:9091
+    user-service-url: /userProfile
+    payment-service-url: /payments
+    information-manager-url: /informationManager
+    business-service-url: /businessService
+  security:
+    user-profile-auth-url: v1/authenticateEvUser
+    master-bypass: true
+    master-username: admin
+    master-password: admin
