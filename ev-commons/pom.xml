@@ -16,7 +16,7 @@
 		<module>ev-extras</module>
 	</modules>
 	<properties>
-		<lombok.version>1.18.18</lombok.version>
+		<lombok.version>1.18.22</lombok.version>
 		<spring.version>5.3.4</spring.version>
 	</properties>
 
